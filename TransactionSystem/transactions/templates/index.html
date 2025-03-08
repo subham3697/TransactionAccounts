@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            Transactions
+        </title>
+    </head>
+    <body>
+        <h2>Transactions Task</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Credit</th>
+                    <th>Debit</th>
+                    <th>Running Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                {% for t in transactions %}
+                <td>{{t.date}}</td>
+                <td>{{t.description}}</td>
+                <td>{{t.credit}}</td>
+                <td>{{t.debit}}</td>
+                <td>{{t.running_balance}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h3>Add Transactions</h3>
+        <form action="/add/" method="post">
+        {% csrf_token %}
+        Date: <input type="date" name="date" required id="">
+        <br><br>
+        Description: <input type="text" name="description" required>
+        <br><br>
+        Credit: <input type="number" step="0.01" name="credit">
+        <br>
+        <br>
+        Debit: <input type="number" step="0.01" name="debit">
+        <br>
+        <br>
+        <button type="submit"> Add Transaction</button>
+    </form>
+    </body>
+</html>
